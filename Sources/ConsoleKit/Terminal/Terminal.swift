@@ -79,6 +79,10 @@ public final class Terminal: Console {
                     pass.append(Character(Unicode.Scalar(c)))
                 }
             }
+#else
+            guard var pass = readLine(strippingNewline: true) else {
+                fatalError("Received EOF on stdin; unable to read input. Stopping here.")
+            }
 #endif
             if pass.hasSuffix("\n") {
                 pass = String(pass.dropLast())
